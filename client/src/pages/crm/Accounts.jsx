@@ -47,10 +47,10 @@ export default function Accounts() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input placeholder="Search accounts..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
         </div>
-        <Select value={tier} onValueChange={setTier}>
+        <Select value={tier || 'all'} onValueChange={v => setTier(v === 'all' ? '' : v)}>
           <SelectTrigger className="w-40"><SelectValue placeholder="All Tiers" /></SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Tiers</SelectItem>
+            <SelectItem value="all">All Tiers</SelectItem>
             {['prospect', 'active', 'churned'].map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}
           </SelectContent>
         </Select>

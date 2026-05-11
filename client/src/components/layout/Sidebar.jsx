@@ -63,7 +63,7 @@ export function Sidebar({ collapsed }) {
         {!collapsed && <span className="font-bold text-lg tracking-tight">Trikara</span>}
       </div>
 
-      <nav className="flex-1 overflow-y-auto py-4 space-y-6">
+      <nav className="flex-1 overflow-y-auto scrollbar-hide py-4 space-y-6">
         {navGroups.map(group => {
           const visibleItems = group.items.filter(item => item.roles.includes(role));
           if (!visibleItems.length) return null;

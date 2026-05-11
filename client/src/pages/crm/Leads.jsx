@@ -13,8 +13,8 @@ import { formatDate, formatCurrency, STATUS_COLORS, PRIORITY_COLORS } from '@/li
 import { toast } from '@/hooks/useToast';
 import LeadForm from './LeadForm';
 
-const STATUS_OPTIONS = ['', 'new', 'contacted', 'qualified', 'unqualified', 'converted'];
-const SOURCE_OPTIONS = ['', 'website', 'referral', 'linkedin', 'cold_call', 'event', 'partner', 'other'];
+const STATUS_OPTIONS = ['new', 'contacted', 'qualified', 'unqualified', 'converted'];
+const SOURCE_OPTIONS = ['website', 'referral', 'linkedin', 'cold_call', 'event', 'partner', 'other'];
 
 export default function Leads() {
   const [search, setSearch] = useState('');
@@ -51,16 +51,18 @@ export default function Leads() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input placeholder="Search leads..." value={search} onChange={e => { setSearch(e.target.value); setPage(1); }} className="pl-9" />
         </div>
-        <Select value={status} onValueChange={v => { setStatus(v); setPage(1); }}>
+        <Select value={status || 'all'} onValueChange={v => { setStatus(v === 'all' ? '' : v); setPage(1); }}>
           <SelectTrigger className="w-40"><SelectValue placeholder="All Statuses" /></SelectTrigger>
           <SelectContent>
-            {STATUS_OPTIONS.map(s => <SelectItem key={s} value={s}>{s || 'All Statuses'}</SelectItem>)}
+            <SelectItem value="all">All Statuses</SelectItem>
+            {STATUS_OPTIONS.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
           </SelectContent>
         </Select>
-        <Select value={source} onValueChange={v => { setSource(v); setPage(1); }}>
+        <Select value={source || 'all'} onValueChange={v => { setSource(v === 'all' ? '' : v); setPage(1); }}>
           <SelectTrigger className="w-40"><SelectValue placeholder="All Sources" /></SelectTrigger>
           <SelectContent>
-            {SOURCE_OPTIONS.map(s => <SelectItem key={s} value={s}>{s || 'All Sources'}</SelectItem>)}
+            <SelectItem value="all">All Sources</SelectItem>
+            {SOURCE_OPTIONS.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}
           </SelectContent>
         </Select>
       </div>

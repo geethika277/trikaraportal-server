@@ -54,10 +54,10 @@ export default function Users() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input placeholder="Search users..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
         </div>
-        <Select value={role} onValueChange={setRole}>
+        <Select value={role || 'all'} onValueChange={v => setRole(v === 'all' ? '' : v)}>
           <SelectTrigger className="w-44"><SelectValue placeholder="All Roles" /></SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Roles</SelectItem>
+            <SelectItem value="all">All Roles</SelectItem>
             {ROLES.map(r => <SelectItem key={r} value={r}>{ROLE_LABELS[r]}</SelectItem>)}
           </SelectContent>
         </Select>

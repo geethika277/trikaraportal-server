@@ -55,10 +55,10 @@ export default function Projects() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input placeholder="Search projects..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
         </div>
-        <Select value={status} onValueChange={setStatus}>
+        <Select value={status || 'all'} onValueChange={v => setStatus(v === 'all' ? '' : v)}>
           <SelectTrigger className="w-40"><SelectValue placeholder="All Statuses" /></SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All</SelectItem>
+            <SelectItem value="all">All</SelectItem>
             {['scoping', 'active', 'on_hold', 'completed', 'cancelled'].map(s => <SelectItem key={s} value={s}>{s.replace('_', ' ')}</SelectItem>)}
           </SelectContent>
         </Select>

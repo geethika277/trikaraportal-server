@@ -56,10 +56,10 @@ export default function Opportunities() {
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input placeholder="Search opportunities..." value={search} onChange={e => setSearch(e.target.value)} className="pl-9" />
         </div>
-        <Select value={stage} onValueChange={setStage}>
+        <Select value={stage || 'all'} onValueChange={v => setStage(v === 'all' ? '' : v)}>
           <SelectTrigger className="w-44"><SelectValue placeholder="All Stages" /></SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Stages</SelectItem>
+            <SelectItem value="all">All Stages</SelectItem>
             {STAGES.map(s => <SelectItem key={s} value={s}>{STAGE_LABELS[s]}</SelectItem>)}
           </SelectContent>
         </Select>

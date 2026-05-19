@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { timeAgo, PRIORITY_COLORS } from '@/lib/utils';
-import { ExternalLink, Search } from 'lucide-react';
+import { OpenInNew, Search } from '@mui/icons-material';
 import { usersApi } from '@/api/users';
 import { toast } from '@/hooks/useToast';
 
@@ -133,7 +133,7 @@ export default function IssuesList({ projectId }) {
             </div>
             <DialogFooter className="gap-2">
               <a href={selectedIssue.htmlUrl} target="_blank" className="text-xs text-muted-foreground hover:text-primary flex items-center gap-1 mr-auto">
-                <ExternalLink className="h-3 w-3" />View on GitHub
+                <OpenInNew className="h-3 w-3" />View on GitHub
               </a>
               <Button variant="outline" onClick={() => setSelectedIssue(null)}>Close</Button>
               <Button onClick={() => {

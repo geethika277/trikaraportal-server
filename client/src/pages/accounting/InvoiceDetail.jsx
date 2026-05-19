@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { formatDate, formatCurrency, STATUS_COLORS } from '@/lib/utils';
-import { ArrowLeft, CheckCircle, Send } from 'lucide-react';
+import { ArrowBack, CheckCircle, Send } from '@mui/icons-material';
 import { toast } from '@/hooks/useToast';
 import { useState } from 'react';
 import InvoiceForm from './InvoiceForm';
@@ -31,7 +31,7 @@ export default function InvoiceDetail() {
 
   return (
     <div className="space-y-6 max-w-3xl">
-      <Button variant="ghost" size="sm" onClick={() => navigate('/invoices')}><ArrowLeft className="h-4 w-4 mr-1" />Invoices</Button>
+      <Button variant="ghost" size="sm" onClick={() => navigate('/invoices')}><ArrowBack className="h-4 w-4 mr-1" />Invoices</Button>
 
       <PageHeader
         title={invoice.invoiceNumber}

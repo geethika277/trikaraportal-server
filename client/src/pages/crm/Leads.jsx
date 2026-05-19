@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { Plus, Search, Filter } from 'lucide-react';
+import { Add, Search, FilterList } from '@mui/icons-material';
 import { leadsApi } from '@/api/crm';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -43,7 +43,7 @@ export default function Leads() {
       <PageHeader
         title="Leads"
         description="Manage your sales leads pipeline"
-        actions={<Button onClick={() => { setEditLead(null); setShowForm(true); }}><Plus className="h-4 w-4 mr-2" />Add Lead</Button>}
+        actions={<Button onClick={() => { setEditLead(null); setShowForm(true); }}><Add className="h-4 w-4 mr-2" />Add Lead</Button>}
       />
 
       <div className="flex gap-3 flex-wrap">

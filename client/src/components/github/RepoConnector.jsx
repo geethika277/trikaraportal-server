@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
-import { GitBranch, RefreshCw, Trash2, ExternalLink } from 'lucide-react';
+import { DeviceHub, Refresh, DeleteOutlineOutlined, OpenInNew } from '@mui/icons-material';
 import { timeAgo } from '@/lib/utils';
 import { toast } from '@/hooks/useToast';
 
@@ -44,7 +44,7 @@ export default function RepoConnector({ projectId, repos, onSync }) {
   return (
     <div className="space-y-4">
       <div className="flex justify-end">
-        <Button size="sm" onClick={() => setShowAdd(true)}><GitBranch className="h-4 w-4 mr-2" />Connect Repository</Button>
+        <Button size="sm" onClick={() => setShowAdd(true)}><DeviceHub className="h-4 w-4 mr-2" />Connect Repository</Button>
       </div>
 
       <div className="space-y-3">
@@ -52,7 +52,7 @@ export default function RepoConnector({ projectId, repos, onSync }) {
           <Card key={repo._id}>
             <CardContent className="p-4 flex items-start justify-between gap-3">
               <div className="flex items-start gap-3">
-                <GitBranch className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+                <DeviceHub className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                 <div>
                   <div className="flex items-center gap-2">
                     <p className="font-medium text-sm">{repo.fullName}</p>
@@ -70,16 +70,16 @@ export default function RepoConnector({ projectId, repos, onSync }) {
                 </div>
               </div>
               <div className="flex items-center gap-2 flex-shrink-0">
-                {repo.url && <a href={repo.url} target="_blank" className="text-muted-foreground hover:text-primary"><ExternalLink className="h-4 w-4" /></a>}
-                <Button variant="ghost" size="sm" onClick={() => onSync(repo._id)}><RefreshCw className="h-4 w-4" /></Button>
-                <Button variant="ghost" size="sm" className="text-destructive" onClick={() => deleteMutation.mutate(repo._id)}><Trash2 className="h-4 w-4" /></Button>
+                {repo.url && <a href={repo.url} target="_blank" className="text-muted-foreground hover:text-primary"><OpenInNew className="h-4 w-4" /></a>}
+                <Button variant="ghost" size="sm" onClick={() => onSync(repo._id)}><Refresh className="h-4 w-4" /></Button>
+                <Button variant="ghost" size="sm" className="text-destructive" onClick={() => deleteMutation.mutate(repo._id)}><DeleteOutlineOutlined className="h-4 w-4" /></Button>
               </div>
             </CardContent>
           </Card>
         ))}
         {repos.length === 0 && (
           <div className="text-center py-12 border-2 border-dashed rounded-lg">
-            <GitBranch className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
+            <DeviceHub className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
             <p className="text-muted-foreground text-sm">No repositories connected</p>
             <p className="text-xs text-muted-foreground mt-1">Connect a GitHub repository to sync issues</p>
           </div>

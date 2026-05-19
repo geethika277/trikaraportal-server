@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Badge } from '@/components/ui/badge';
 import { formatDate, formatCurrency, STATUS_COLORS, PRIORITY_COLORS } from '@/lib/utils';
-import { ArrowLeft, GitBranch, ExternalLink, Users, Code2, Globe, RefreshCw } from 'lucide-react';
+import { ArrowBack, DeviceHub, OpenInNew, Group, Code, Public, Refresh } from '@mui/icons-material';
 import { toast } from '@/hooks/useToast';
 import { useState } from 'react';
 import { usersApi } from '@/api/users';
@@ -50,7 +50,7 @@ export default function ProjectDetail() {
 
   return (
     <div className="space-y-6 max-w-6xl">
-      <Button variant="ghost" size="sm" onClick={() => navigate('/projects')}><ArrowLeft className="h-4 w-4 mr-1" />Projects</Button>
+      <Button variant="ghost" size="sm" onClick={() => navigate('/projects')}><ArrowBack className="h-4 w-4 mr-1" />Projects</Button>
 
       <div className="flex items-center gap-3">
         <div className="w-3 h-12 rounded-full" style={{ backgroundColor: project.color || '#6366f1' }} />
@@ -107,7 +107,7 @@ export default function ProjectDetail() {
         <TabsContent value="team" className="mt-4">
           <div className="space-y-3">
             <div className="flex justify-end">
-              <Button size="sm" onClick={() => setAddMemberOpen(true)}><Users className="h-4 w-4 mr-2" />Add Member</Button>
+              <Button size="sm" onClick={() => setAddMemberOpen(true)}><Group className="h-4 w-4 mr-2" />Add Member</Button>
             </div>
             <div className="grid gap-3 md:grid-cols-2">
               {project.team?.map(m => (
@@ -148,7 +148,7 @@ export default function ProjectDetail() {
                     </div>
                     {env?.url ? (
                       <a href={env.url} target="_blank" className="text-sm text-primary hover:underline flex items-center gap-1">
-                        <Globe className="h-3 w-3" />{env.url}
+                        <Public className="h-3 w-3" />{env.url}
                       </a>
                     ) : (
                       <p className="text-sm text-muted-foreground">Not configured</p>
@@ -167,7 +167,7 @@ export default function ProjectDetail() {
               <Card key={s._id || s.name}>
                 <CardContent className="p-4">
                   <div className="flex items-center gap-2 mb-2">
-                    <Code2 className="h-4 w-4 text-primary" />
+                    <Code className="h-4 w-4 text-primary" />
                     <h3 className="font-semibold capitalize">{s.name}</h3>
                   </div>
                   {s.description && <p className="text-sm text-muted-foreground">{s.description}</p>}

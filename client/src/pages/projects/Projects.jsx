@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { Plus, Search, FolderKanban } from 'lucide-react';
+import { Add, Search, ViewKanban } from '@mui/icons-material';
 import { projectsApi } from '@/api/projects';
 import { accountsApi } from '@/api/crm';
 import { Button } from '@/components/ui/button';
@@ -47,7 +47,7 @@ export default function Projects() {
       <PageHeader
         title="Projects"
         description="Active engagements and deliveries"
-        actions={canCreate && <Button onClick={() => setShowForm(true)}><Plus className="h-4 w-4 mr-2" />New Project</Button>}
+        actions={canCreate && <Button onClick={() => setShowForm(true)}><Add className="h-4 w-4 mr-2" />New Project</Button>}
       />
 
       <div className="flex gap-3 flex-wrap">

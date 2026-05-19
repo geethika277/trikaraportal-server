@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GitBranch, Eye, EyeOff } from 'lucide-react';
+import { DeviceHub, Visibility, VisibilityOff } from '@mui/icons-material';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -27,14 +27,9 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800 p-4">
       <div className="w-full max-w-md">
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-            <GitBranch className="h-5 w-5 text-white" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold text-white tracking-tight">Trikara</h1>
-            <p className="text-gray-400 text-xs">Agency Portal</p>
-          </div>
+        <div className="flex flex-col items-center justify-center gap-2 mb-8">
+          <img src="/logo.png" alt="Trikara" className="h-10 object-contain" />
+          <p className="text-gray-400 text-xs">Agency Portal</p>
         </div>
 
         <Card className="border-gray-700 bg-gray-900/80 backdrop-blur">
@@ -75,7 +70,7 @@ export default function Login() {
                     onClick={() => setShowPwd(p => !p)}
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200"
                   >
-                    {showPwd ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    {showPwd ? <VisibilityOff className="h-4 w-4" /> : <Visibility className="h-4 w-4" />}
                   </button>
                 </div>
               </div>

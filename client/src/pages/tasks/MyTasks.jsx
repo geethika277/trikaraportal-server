@@ -13,12 +13,12 @@ import { Input } from '@/components/ui/input';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Badge } from '@/components/ui/badge';
 import { formatDate, STATUS_COLORS, PRIORITY_COLORS } from '@/lib/utils';
-import { Plus, CheckCircle2, Circle, Clock, AlertCircle } from 'lucide-react';
+import { Add, CheckCircle, RadioButtonUnchecked, AccessTime, Error } from '@mui/icons-material';
 import { toast } from '@/hooks/useToast';
 import { useAuth } from '@/hooks/useAuth';
 import { accountsApi } from '@/api/crm';
 
-const STATUS_ICONS = { todo: Circle, in_progress: Clock, review: AlertCircle, done: CheckCircle2, blocked: AlertCircle };
+const STATUS_ICONS = { todo: RadioButtonUnchecked, in_progress: AccessTime, review: Error, done: CheckCircle, blocked: Error };
 
 export default function MyTasks() {
   const { user } = useAuth();
@@ -64,7 +64,7 @@ export default function MyTasks() {
       <PageHeader
         title="Tasks"
         description={isManager ? "All team tasks" : "My tasks"}
-        actions={<Button onClick={() => setShowForm(true)}><Plus className="h-4 w-4 mr-2" />New Task</Button>}
+        actions={<Button onClick={() => setShowForm(true)}><Add className="h-4 w-4 mr-2" />New Task</Button>}
       />
 
       <div className="flex gap-2">
@@ -151,7 +151,7 @@ export default function MyTasks() {
 }
 
 function TaskCard({ task, onStatusChange, nextStatus, compact }) {
-  const Icon = STATUS_ICONS[task.status] || Circle;
+  const Icon = STATUS_ICONS[task.status] || RadioButtonUnchecked;
   return (
     <Card className="hover:shadow-sm transition-shadow">
       <CardContent className={`${compact ? 'p-3' : 'p-4'}`}>

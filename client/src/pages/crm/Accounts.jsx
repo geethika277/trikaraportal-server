@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { Plus, Search, Building2, Globe, Mail } from 'lucide-react';
+import { Add, Search, Business, Public, Email } from '@mui/icons-material';
 import { accountsApi } from '@/api/crm';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -39,7 +39,7 @@ export default function Accounts() {
       <PageHeader
         title="Accounts"
         description="Client and prospect accounts"
-        actions={<Button onClick={() => setShowForm(true)}><Plus className="h-4 w-4 mr-2" />Add Account</Button>}
+        actions={<Button onClick={() => setShowForm(true)}><Add className="h-4 w-4 mr-2" />Add Account</Button>}
       />
 
       <div className="flex gap-3">
@@ -66,7 +66,7 @@ export default function Accounts() {
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-3 min-w-0">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Building2 className="h-5 w-5 text-primary" />
+                      <Business className="h-5 w-5 text-primary" />
                     </div>
                     <div className="min-w-0">
                       <Link to={`/accounts/${acc._id}`} className="font-semibold text-sm hover:text-primary block truncate">{acc.name}</Link>
@@ -76,8 +76,8 @@ export default function Accounts() {
                   <Badge variant={TIER_COLORS[acc.tier] || 'secondary'}>{acc.tier}</Badge>
                 </div>
                 <div className="mt-3 space-y-1">
-                  {acc.email && <div className="flex items-center gap-2 text-xs text-muted-foreground"><Mail className="h-3 w-3" />{acc.email}</div>}
-                  {acc.website && <div className="flex items-center gap-2 text-xs text-muted-foreground"><Globe className="h-3 w-3" />{acc.website}</div>}
+                  {acc.email && <div className="flex items-center gap-2 text-xs text-muted-foreground"><Email className="h-3 w-3" />{acc.email}</div>}
+                  {acc.website && <div className="flex items-center gap-2 text-xs text-muted-foreground"><Public className="h-3 w-3" />{acc.website}</div>}
                 </div>
               </CardContent>
             </Card>

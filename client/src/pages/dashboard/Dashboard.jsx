@@ -6,7 +6,7 @@ import { PageHeader } from '@/components/shared/PageHeader';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { formatCurrency, formatDate, STATUS_COLORS } from '@/lib/utils';
-import { FolderKanban, AlertCircle, CheckSquare, DollarSign, Users, TrendingUp, Target, FileText } from 'lucide-react';
+import { ViewKanban, Error, CheckBox, AttachMoney, Group, TrendingUp, TrackChanges, InsertDriveFile } from '@mui/icons-material';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 import { Link } from 'react-router-dom';
 
@@ -30,11 +30,11 @@ export default function Dashboard() {
         <PageHeader title={`Good morning, ${user?.name?.split(' ')[0]}`} description="Here's what's happening at Trikara today." />
 
         <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4">
-          <StatCard title="Active Projects" value={stats?.activeProjects} icon={FolderKanban} color="primary" />
-          <StatCard title="Open Issues" value={stats?.openIssues} icon={AlertCircle} color="warning" />
-          <StatCard title="Pending Tasks" value={stats?.pendingTasks} icon={CheckSquare} color="info" />
-          <StatCard title="Month Revenue" value={stats?.monthRevenue} icon={DollarSign} isCurrency color="success" />
-          <StatCard title="Team Members" value={stats?.teamCount} icon={Users} />
+          <StatCard title="Active Projects" value={stats?.activeProjects} icon={ViewKanban} color="primary" />
+          <StatCard title="Open Issues" value={stats?.openIssues} icon={Error} color="warning" />
+          <StatCard title="Pending Tasks" value={stats?.pendingTasks} icon={CheckBox} color="info" />
+          <StatCard title="Month Revenue" value={stats?.monthRevenue} icon={AttachMoney} isCurrency color="success" />
+          <StatCard title="Team Members" value={stats?.teamCount} icon={Group} />
           <StatCard title="Pipeline Value" value={stats?.pipelineValue} icon={TrendingUp} isCurrency color="primary" />
         </div>
 
@@ -100,10 +100,10 @@ export default function Dashboard() {
         <PageHeader title={`Hello, ${user?.name?.split(' ')[0]}`} description="Your sales pipeline at a glance." />
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <StatCard title="Active Leads" value={stats?.activeLeads} icon={Target} color="primary" />
+          <StatCard title="Active Leads" value={stats?.activeLeads} icon={TrackChanges} color="primary" />
           <StatCard title="Won This Month" value={stats?.wonThisMonth?.count} icon={TrendingUp} color="success" />
-          <StatCard title="Won Value MTD" value={stats?.wonThisMonth?.total} icon={DollarSign} isCurrency color="success" />
-          <StatCard title="Follow-ups Due" value={followUps?.length} icon={CheckSquare} color="warning" />
+          <StatCard title="Won Value MTD" value={stats?.wonThisMonth?.total} icon={AttachMoney} isCurrency color="success" />
+          <StatCard title="Follow-ups Due" value={followUps?.length} icon={CheckBox} color="warning" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -155,10 +155,10 @@ export default function Dashboard() {
       <div className="space-y-6">
         <PageHeader title="Finance Overview" description="Invoice and revenue summary." />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <StatCard title="Draft" value={s.draft?.[0]?.count || 0} description={formatCurrency(s.draft?.[0]?.total)} icon={FileText} />
-          <StatCard title="Outstanding" value={s.sent?.[0]?.count || 0} description={formatCurrency(s.sent?.[0]?.total)} icon={DollarSign} color="info" />
-          <StatCard title="Paid MTD" value={s.paid?.[0]?.count || 0} description={formatCurrency(s.paid?.[0]?.total)} icon={CheckSquare} color="success" />
-          <StatCard title="Overdue" value={s.overdue?.[0]?.count || 0} description={formatCurrency(s.overdue?.[0]?.total)} icon={AlertCircle} color="danger" />
+          <StatCard title="Draft" value={s.draft?.[0]?.count || 0} description={formatCurrency(s.draft?.[0]?.total)} icon={InsertDriveFile} />
+          <StatCard title="Outstanding" value={s.sent?.[0]?.count || 0} description={formatCurrency(s.sent?.[0]?.total)} icon={AttachMoney} color="info" />
+          <StatCard title="Paid MTD" value={s.paid?.[0]?.count || 0} description={formatCurrency(s.paid?.[0]?.total)} icon={CheckBox} color="success" />
+          <StatCard title="Overdue" value={s.overdue?.[0]?.count || 0} description={formatCurrency(s.overdue?.[0]?.total)} icon={Error} color="danger" />
         </div>
         <Card>
           <CardHeader><CardTitle className="text-base">Recent Invoices</CardTitle></CardHeader>

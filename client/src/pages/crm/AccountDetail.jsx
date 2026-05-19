@@ -8,7 +8,7 @@ import { PageHeader } from '@/components/shared/PageHeader';
 import { ActivityFeed } from '@/components/shared/ActivityFeed';
 import { Badge } from '@/components/ui/badge';
 import { formatDate, formatCurrency, STATUS_COLORS, STAGE_LABELS } from '@/lib/utils';
-import { ArrowLeft, Mail, Phone, Globe, Building2, User } from 'lucide-react';
+import { ArrowBack, Email, Phone, Public, Business, Person } from '@mui/icons-material';
 
 export default function AccountDetail() {
   const { id } = useParams();
@@ -23,7 +23,7 @@ export default function AccountDetail() {
 
   return (
     <div className="space-y-6 max-w-6xl">
-      <Button variant="ghost" size="sm" onClick={() => navigate('/accounts')}><ArrowLeft className="h-4 w-4 mr-1" />Accounts</Button>
+      <Button variant="ghost" size="sm" onClick={() => navigate('/accounts')}><ArrowBack className="h-4 w-4 mr-1" />Accounts</Button>
 
       <PageHeader
         title={account.name}
@@ -41,10 +41,10 @@ export default function AccountDetail() {
           <Card>
             <CardHeader><CardTitle className="text-sm">Account Info</CardTitle></CardHeader>
             <CardContent className="space-y-2 text-sm">
-              {account.email && <div className="flex gap-2"><Mail className="h-4 w-4 text-muted-foreground mt-0.5 flex-shrink-0" /><a href={`mailto:${account.email}`} className="hover:text-primary break-all">{account.email}</a></div>}
+              {account.email && <div className="flex gap-2"><Email className="h-4 w-4 text-muted-foreground mt-0.5 flex-shrink-0" /><a href={`mailto:${account.email}`} className="hover:text-primary break-all">{account.email}</a></div>}
               {account.phone && <div className="flex gap-2"><Phone className="h-4 w-4 text-muted-foreground flex-shrink-0" /><span>{account.phone}</span></div>}
-              {account.website && <div className="flex gap-2"><Globe className="h-4 w-4 text-muted-foreground flex-shrink-0" /><a href={account.website} target="_blank" className="hover:text-primary text-xs">{account.website}</a></div>}
-              {account.address?.city && <div className="flex gap-2"><Building2 className="h-4 w-4 text-muted-foreground flex-shrink-0" /><span>{[account.address.city, account.address.state, account.address.country].filter(Boolean).join(', ')}</span></div>}
+              {account.website && <div className="flex gap-2"><Public className="h-4 w-4 text-muted-foreground flex-shrink-0" /><a href={account.website} target="_blank" className="hover:text-primary text-xs">{account.website}</a></div>}
+              {account.address?.city && <div className="flex gap-2"><Business className="h-4 w-4 text-muted-foreground flex-shrink-0" /><span>{[account.address.city, account.address.state, account.address.country].filter(Boolean).join(', ')}</span></div>}
             </CardContent>
           </Card>
           <Card>
@@ -70,7 +70,7 @@ export default function AccountDetail() {
                 {contacts?.map(c => (
                   <Card key={c._id}>
                     <CardContent className="p-3 flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center"><User className="h-4 w-4 text-primary" /></div>
+                      <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center"><Person className="h-4 w-4 text-primary" /></div>
                       <div><p className="font-medium text-sm">{c.name}{c.isPrimary && <span className="ml-2 text-xs text-primary">(Primary)</span>}</p><p className="text-xs text-muted-foreground">{c.designation} · {c.email}</p></div>
                     </CardContent>
                   </Card>

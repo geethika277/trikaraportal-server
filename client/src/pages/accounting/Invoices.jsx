@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { Plus, Search, DollarSign, AlertCircle, CheckCircle, Clock } from 'lucide-react';
+import { Add, Search, AttachMoney, Error, CheckCircle, AccessTime } from '@mui/icons-material';
 import { invoicesApi } from '@/api/invoices';
 import { accountsApi, opportunitiesApi } from '@/api/crm';
 import { projectsApi } from '@/api/projects';
@@ -15,7 +15,7 @@ import { formatDate, formatCurrency, STATUS_COLORS } from '@/lib/utils';
 import { toast } from '@/hooks/useToast';
 import InvoiceForm from './InvoiceForm';
 
-const STATUS_ICONS = { draft: Clock, sent: Clock, viewed: Clock, paid: CheckCircle, overdue: AlertCircle, cancelled: AlertCircle };
+const STATUS_ICONS = { draft: AccessTime, sent: AccessTime, viewed: AccessTime, paid: CheckCircle, overdue: Error, cancelled: Error };
 
 export default function Invoices() {
   const [search, setSearch] = useState('');
@@ -44,15 +44,15 @@ export default function Invoices() {
       <PageHeader
         title="Invoices"
         description="Billing and payment tracking"
-        actions={<Button onClick={() => setShowForm(true)}><Plus className="h-4 w-4 mr-2" />New Invoice</Button>}
+        actions={<Button onClick={() => setShowForm(true)}><Add className="h-4 w-4 mr-2" />New Invoice</Button>}
       />
 
       {summary && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <StatCard title="Outstanding" value={summary.outstanding?.total} isCurrency description={`${summary.outstanding?.count} invoices`} icon={Clock} color="info" />
-          <StatCard title="Overdue" value={summary.overdue?.total} isCurrency description={`${summary.overdue?.count} invoices`} icon={AlertCircle} color="danger" />
+          <StatCard title="Outstanding" value={summary.outstanding?.total} isCurrency description={`${summary.outstanding?.count} invoices`} icon={AccessTime} color="info" />
+          <StatCard title="Overdue" value={summary.overdue?.total} isCurrency description={`${summary.overdue?.count} invoices`} icon={Error} color="danger" />
           <StatCard title="Paid (MTD)" value={summary.monthRevenue} isCurrency icon={CheckCircle} color="success" />
-          <StatCard title="Year Revenue" value={summary.yearRevenue} isCurrency icon={DollarSign} color="primary" />
+          <StatCard title="Year Revenue" value={summary.yearRevenue} isCurrency icon={AttachMoney} color="primary" />
         </div>
       )}
 
@@ -77,7 +77,7 @@ export default function Invoices() {
           {invoices
             .filter(inv => !search || inv.invoiceNumber?.toLowerCase().includes(search.toLowerCase()) || inv.account?.name?.toLowerCase().includes(search.toLowerCase()))
             .map(inv => {
-              const Icon = STATUS_ICONS[inv.status] || Clock;
+              const Icon = STATUS_ICONS[inv.status] || AccessTime;
               return (
                 <Card key={inv._id} className="hover:shadow-md transition-shadow">
                   <CardContent className="p-4">

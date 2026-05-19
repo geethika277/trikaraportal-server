@@ -1,12 +1,12 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { activitiesApi } from '@/api/crm';
 import { formatDate, timeAgo } from '@/lib/utils';
-import { Phone, Mail, Users, FileText, Monitor, ArrowRight, Plus } from 'lucide-react';
+import { Phone, Email, Group, InsertDriveFile, DesktopMac, ArrowForward, Add } from '@mui/icons-material';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 
-const ICONS = { call: Phone, email: Mail, meeting: Users, note: FileText, demo: Monitor, follow_up: ArrowRight };
+const ICONS = { call: Phone, email: Email, meeting: Group, note: InsertDriveFile, demo: DesktopMac, follow_up: ArrowForward };
 const COLORS = {
   call: 'bg-blue-100 text-blue-600',
   email: 'bg-green-100 text-green-600',
@@ -32,7 +32,7 @@ export function ActivityFeed({ relatedModel, relatedId }) {
         <p className="text-sm text-muted-foreground text-center py-4">No activities yet</p>
       ) : (
         activities.map(a => {
-          const Icon = ICONS[a.type] || FileText;
+          const Icon = ICONS[a.type] || InsertDriveFile;
           return (
             <div key={a._id} className="flex gap-3">
               <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${COLORS[a.type] || COLORS.note}`}>

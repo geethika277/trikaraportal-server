@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bell, Menu, Moon, Sun, LogOut, User, ChevronDown } from 'lucide-react';
+import { Notifications, Menu, DarkMode, LightMode, Logout, Person, ExpandMore } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
@@ -41,12 +41,12 @@ export function TopBar({ onToggleSidebar, darkMode, onToggleDark }) {
 
       <div className="flex items-center gap-2 ml-auto">
         <Button variant="ghost" size="icon" onClick={onToggleDark}>
-          {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          {darkMode ? <LightMode className="h-4 w-4" /> : <DarkMode className="h-4 w-4" />}
         </Button>
 
         <div className="relative">
           <Button variant="ghost" size="icon" onClick={() => { setNotifOpen(p => !p); setUserOpen(false); }} className="relative">
-            <Bell className="h-4 w-4" />
+            <Notifications className="h-4 w-4" />
             {unreadCount > 0 && (
               <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-destructive text-[10px] text-white flex items-center justify-center">
                 {unreadCount > 9 ? '9+' : unreadCount}
@@ -93,7 +93,7 @@ export function TopBar({ onToggleSidebar, darkMode, onToggleDark }) {
               {user?.name?.[0]?.toUpperCase()}
             </div>
             <span className="text-sm font-medium hidden md:block">{user?.name?.split(' ')[0]}</span>
-            <ChevronDown className="h-3 w-3 text-muted-foreground" />
+            <ExpandMore className="h-3 w-3 text-muted-foreground" />
           </button>
           {userOpen && (
             <div className="absolute right-0 top-12 w-48 bg-background border rounded-lg shadow-lg z-50 overflow-hidden">
@@ -105,13 +105,13 @@ export function TopBar({ onToggleSidebar, darkMode, onToggleDark }) {
                 onClick={() => { setUserOpen(false); navigate('/settings/profile'); }}
                 className="w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-muted transition-colors"
               >
-                <User className="h-4 w-4" /> Profile
+                <Person className="h-4 w-4" /> Profile
               </button>
               <button
                 onClick={() => { setUserOpen(false); logout(); navigate('/login'); }}
                 className="w-full flex items-center gap-2 px-4 py-2 text-sm text-destructive hover:bg-muted transition-colors"
               >
-                <LogOut className="h-4 w-4" /> Sign out
+                <Logout className="h-4 w-4" /> Sign out
               </button>
             </div>
           )}

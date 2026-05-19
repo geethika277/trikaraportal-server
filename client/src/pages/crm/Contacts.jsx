@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { Plus, Search, Mail, Phone } from 'lucide-react';
+import { Add, Search, Email, Phone } from '@mui/icons-material';
 import { contactsApi, accountsApi } from '@/api/crm';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -38,7 +38,7 @@ export default function Contacts() {
       <PageHeader
         title="Contacts"
         description="People at your client accounts"
-        actions={<Button onClick={() => setShowForm(true)}><Plus className="h-4 w-4 mr-2" />Add Contact</Button>}
+        actions={<Button onClick={() => setShowForm(true)}><Add className="h-4 w-4 mr-2" />Add Contact</Button>}
       />
 
       <div className="relative max-w-sm">
@@ -62,7 +62,7 @@ export default function Contacts() {
                     {c.designation && <p className="text-xs text-muted-foreground">{c.designation}</p>}
                     {c.account && <Link to={`/accounts/${c.account._id}`} className="text-xs text-primary hover:underline">{c.account.name}</Link>}
                     <div className="mt-2 space-y-0.5">
-                      {c.email && <div className="flex items-center gap-1 text-xs text-muted-foreground"><Mail className="h-3 w-3" />{c.email}</div>}
+                      {c.email && <div className="flex items-center gap-1 text-xs text-muted-foreground"><Email className="h-3 w-3" />{c.email}</div>}
                       {c.phone && <div className="flex items-center gap-1 text-xs text-muted-foreground"><Phone className="h-3 w-3" />{c.phone}</div>}
                     </div>
                   </div>

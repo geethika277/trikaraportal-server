@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Trash2, Plus } from 'lucide-react';
+import { DeleteOutlineOutlined, Add } from '@mui/icons-material';
 import { toast } from '@/hooks/useToast';
 
 export default function InvoiceForm({ invoice, onClose, onSuccess }) {
@@ -80,7 +80,7 @@ export default function InvoiceForm({ invoice, onClose, onSuccess }) {
           <div>
             <div className="flex items-center justify-between mb-2">
               <Label>Line Items</Label>
-              <Button variant="outline" size="sm" onClick={addItem}><Plus className="h-3 w-3 mr-1" />Add Item</Button>
+              <Button variant="outline" size="sm" onClick={addItem}><Add className="h-3 w-3 mr-1" />Add Item</Button>
             </div>
             <div className="border rounded-lg overflow-hidden">
               <table className="w-full text-sm">
@@ -92,7 +92,7 @@ export default function InvoiceForm({ invoice, onClose, onSuccess }) {
                       <td className="p-1"><Input type="number" value={item.quantity} onChange={e => updateItem(i, 'quantity', e.target.value)} className="border-0 h-8 text-right" /></td>
                       <td className="p-1"><Input type="number" value={item.unitPrice} onChange={e => updateItem(i, 'unitPrice', e.target.value)} className="border-0 h-8 text-right" placeholder="0" /></td>
                       <td className="p-2 text-right font-medium">₹{(item.amount || 0).toLocaleString('en-IN')}</td>
-                      <td className="p-1"><button onClick={() => removeItem(i)} className="text-muted-foreground hover:text-destructive"><Trash2 className="h-3.5 w-3.5" /></button></td>
+                      <td className="p-1"><button onClick={() => removeItem(i)} className="text-muted-foreground hover:text-destructive"><DeleteOutlineOutlined className="h-3.5 w-3.5" /></button></td>
                     </tr>
                   ))}
                 </tbody>

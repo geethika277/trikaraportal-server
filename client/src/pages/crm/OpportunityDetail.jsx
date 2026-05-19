@@ -7,7 +7,7 @@ import { PageHeader } from '@/components/shared/PageHeader';
 import { ActivityFeed } from '@/components/shared/ActivityFeed';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { formatCurrency, formatDate, STAGE_LABELS, STAGE_COLORS } from '@/lib/utils';
-import { ArrowLeft, FolderKanban } from 'lucide-react';
+import { ArrowBack, ViewKanban } from '@mui/icons-material';
 import { toast } from '@/hooks/useToast';
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
@@ -48,7 +48,7 @@ export default function OpportunityDetail() {
 
   return (
     <div className="space-y-6 max-w-5xl">
-      <Button variant="ghost" size="sm" onClick={() => navigate('/opportunities')}><ArrowLeft className="h-4 w-4 mr-1" />Opportunities</Button>
+      <Button variant="ghost" size="sm" onClick={() => navigate('/opportunities')}><ArrowBack className="h-4 w-4 mr-1" />Opportunities</Button>
 
       <PageHeader
         title={opp.title}
@@ -57,7 +57,7 @@ export default function OpportunityDetail() {
           <div className="flex gap-2">
             {!opp.convertedToProject && opp.stage !== 'lost' && (
               <Button variant="outline" onClick={() => { setConvertForm({ title: opp.title, type: 'new_development' }); setShowConvert(true); }}>
-                <FolderKanban className="h-4 w-4 mr-2" />Convert to Project
+                <ViewKanban className="h-4 w-4 mr-2" />Convert to Project
               </Button>
             )}
             {opp.convertedToProject && (

@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { ActivityFeed } from '@/components/shared/ActivityFeed';
 import { formatDate, formatCurrency, STATUS_COLORS } from '@/lib/utils';
-import { ArrowLeft, Building2, Mail, Phone, Globe, RefreshCcw } from 'lucide-react';
+import { ArrowBack, Business, Email, Phone, Public, Refresh } from '@mui/icons-material';
 import { toast } from '@/hooks/useToast';
 import { useState } from 'react';
 import LeadForm from './LeadForm';
@@ -42,7 +42,7 @@ export default function LeadDetail() {
   return (
     <div className="space-y-6 max-w-5xl">
       <div className="flex items-center gap-3">
-        <Button variant="ghost" size="sm" onClick={() => navigate('/leads')}><ArrowLeft className="h-4 w-4 mr-1" />Leads</Button>
+        <Button variant="ghost" size="sm" onClick={() => navigate('/leads')}><ArrowBack className="h-4 w-4 mr-1" />Leads</Button>
       </div>
 
       <PageHeader
@@ -52,12 +52,12 @@ export default function LeadDetail() {
           <div className="flex gap-2">
             {lead.status !== 'converted' && (
               <Button variant="outline" onClick={() => convertMutation.mutate()} disabled={convertMutation.isPending}>
-                <RefreshCcw className="h-4 w-4 mr-2" /> Convert to Account
+                <Refresh className="h-4 w-4 mr-2" /> Convert to Account
               </Button>
             )}
             {lead.convertedToAccount && (
               <Button variant="outline" asChild>
-                <Link to={`/accounts/${lead.convertedToAccount._id}`}><Building2 className="h-4 w-4 mr-2" />View Account</Link>
+                <Link to={`/accounts/${lead.convertedToAccount._id}`}><Business className="h-4 w-4 mr-2" />View Account</Link>
               </Button>
             )}
             <Button onClick={() => setShowEdit(true)}>Edit</Button>
@@ -103,10 +103,10 @@ export default function LeadDetail() {
           <Card>
             <CardHeader><CardTitle className="text-base">Contact Info</CardTitle></CardHeader>
             <CardContent className="space-y-3 text-sm">
-              {lead.email && <div className="flex items-center gap-2"><Mail className="h-4 w-4 text-muted-foreground" /><a href={`mailto:${lead.email}`} className="hover:text-primary">{lead.email}</a></div>}
+              {lead.email && <div className="flex items-center gap-2"><Email className="h-4 w-4 text-muted-foreground" /><a href={`mailto:${lead.email}`} className="hover:text-primary">{lead.email}</a></div>}
               {lead.phone && <div className="flex items-center gap-2"><Phone className="h-4 w-4 text-muted-foreground" /><span>{lead.phone}</span></div>}
-              {lead.website && <div className="flex items-center gap-2"><Globe className="h-4 w-4 text-muted-foreground" /><a href={lead.website} target="_blank" className="hover:text-primary text-xs">{lead.website}</a></div>}
-              {lead.company && <div className="flex items-center gap-2"><Building2 className="h-4 w-4 text-muted-foreground" /><span>{lead.company}</span></div>}
+              {lead.website && <div className="flex items-center gap-2"><Public className="h-4 w-4 text-muted-foreground" /><a href={lead.website} target="_blank" className="hover:text-primary text-xs">{lead.website}</a></div>}
+              {lead.company && <div className="flex items-center gap-2"><Business className="h-4 w-4 text-muted-foreground" /><span>{lead.company}</span></div>}
             </CardContent>
           </Card>
         </div>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { Plus, Search } from 'lucide-react';
+import { Add, Search } from '@mui/icons-material';
 import { opportunitiesApi, accountsApi } from '@/api/crm';
 import { usersApi } from '@/api/users';
 import { Button } from '@/components/ui/button';
@@ -46,7 +46,7 @@ export default function Opportunities() {
         actions={
           <div className="flex gap-2">
             <Button variant="outline" asChild><Link to="/sales-funnel">Funnel View</Link></Button>
-            <Button onClick={() => setShowForm(true)}><Plus className="h-4 w-4 mr-2" />Add Opportunity</Button>
+            <Button onClick={() => setShowForm(true)}><Add className="h-4 w-4 mr-2" />Add Opportunity</Button>
           </div>
         }
       />

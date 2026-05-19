@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { PageHeader } from '@/components/shared/PageHeader';
 import { Badge } from '@/components/ui/badge';
 import { formatDate, ROLE_LABELS } from '@/lib/utils';
-import { Plus, UserX, Search } from 'lucide-react';
+import { Add, PersonRemove, Search } from '@mui/icons-material';
 import { toast } from '@/hooks/useToast';
 
 const ROLES = ['superadmin', 'project_manager', 'developer', 'tester', 'bde', 'accounting'];
@@ -46,7 +46,7 @@ export default function Users() {
       <PageHeader
         title="Team Members"
         description="Manage user accounts and roles"
-        actions={<Button onClick={() => setShowForm(true)}><Plus className="h-4 w-4 mr-2" />Add User</Button>}
+        actions={<Button onClick={() => setShowForm(true)}><Add className="h-4 w-4 mr-2" />Add User</Button>}
       />
 
       <div className="flex gap-3">
@@ -85,7 +85,7 @@ export default function Users() {
                   <Badge variant={ROLE_COLORS[u.role] || 'default'}>{ROLE_LABELS[u.role]}</Badge>
                   {u.isActive && (
                     <Button variant="ghost" size="sm" className="text-destructive" onClick={() => deactivateMutation.mutate(u._id)} title="Deactivate">
-                      <UserX className="h-4 w-4" />
+                      <PersonRemove className="h-4 w-4" />
                     </Button>
                   )}
                 </div>

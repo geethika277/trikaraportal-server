@@ -1,6 +1,6 @@
 import { cn, formatCurrency } from '@/lib/utils';
 import { Card, CardContent } from '@/components/ui/card';
-import { TrendingUp, TrendingDown } from 'lucide-react';
+import { TrendingUp, TrendingDown } from '@mui/icons-material';
 
 export function StatCard({ title, value, icon: Icon, description, trend, isCurrency, color = 'primary', className }) {
   const colorMap = {

@@ -21,6 +21,7 @@ import dashboardRoutes from './routes/dashboard.js';
 import githubRoutes from './routes/github.js';
 
 const app = express();
+app.set('trust proxy', true);
 
 app.use(helmet());
 app.use(cors({ origin: env.CLIENT_URL, credentials: true }));

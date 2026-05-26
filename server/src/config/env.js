@@ -11,7 +11,7 @@ export const env = {
   ENCRYPTION_KEY: process.env.ENCRYPTION_KEY || '0'.repeat(32),
   GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID || '',
   GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET || '',
-  GITHUB_CALLBACK_URL: process.env.GITHUB_CALLBACK_URL || 'http://localhost:5000/api/github/callback',
+  GITHUB_CALLBACK_URL: process.env.GITHUB_CALLBACK_URL || 'https://trikaraportal-server.onrender.com/api/github/callback',
   GITHUB_WEBHOOK_SECRET: process.env.GITHUB_WEBHOOK_SECRET || 'webhook_secret',
-  CLIENT_URL: process.env.CLIENT_URL || 'http://localhost:5173',
+  CLIENT_URL: process.env.CLIENT_URL || 'https://trikaraportal-client-pcls.vercel.app',
 };

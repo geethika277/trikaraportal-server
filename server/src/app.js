@@ -19,19 +19,19 @@ import invoiceRoutes from './routes/invoices.js';
 import notificationRoutes from './routes/notifications.js';
 import dashboardRoutes from './routes/dashboard.js';
 import githubRoutes from './routes/github.js';
+import { runSeed } from './services/seed.js';
 
 const app = express();
 app.set('trust proxy', true);
 
 app.use(helmet());
-app.use(cors({ origin: [
-  'http://localhost:5173',
-  'http://localhost:5174',
-  'http://localhost:5175',
-  'http://localhost:5176',
-  'https://trikaraportal-client-pcls.vercel.app'
-],
-credentials: true, }));
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://trikaraportal-client.vercel.app'
+  ],
+  credentials: true,
+}));
 app.use(morgan(env.NODE_ENV === 'development' ? 'dev' : 'combined'));
 app.use(cookieParser());
 
@@ -59,6 +59,15 @@ app.use('/api/invoices', invoiceRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/github', githubRoutes);
+
+app.get('/api/seed-production-db-xyz123', async (req, res, next) => {
+  try {
+    await runSeed();
+    res.json({ message: 'Database seeded successfully on production!' });
+  } catch (err) {
+    next(err);
+  }
+});
 
 app.get('/api/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }));
 

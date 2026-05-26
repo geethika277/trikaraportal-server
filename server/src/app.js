@@ -60,15 +60,6 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/github', githubRoutes);
 
-app.get('/api/seed-production-db-xyz123', async (req, res, next) => {
-  try {
-    await runSeed();
-    res.json({ message: 'Database seeded successfully on production!' });
-  } catch (err) {
-    next(err);
-  }
-});
-
 app.get('/api/health', (_req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }));
 
 app.use((err, _req, res, _next) => {
